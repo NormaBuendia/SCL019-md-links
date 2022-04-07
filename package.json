@@ -3,5 +3,15 @@
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "jest --coverage --verbose"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "file-system": "^2.2.2"
   }
 }
