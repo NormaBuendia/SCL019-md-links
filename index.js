@@ -14,7 +14,7 @@ const exist = inicio.verifyExistence;
 // const verify = inicio.verifyExtension;
 
 // se imprime en consola
-process.stdout.write(colors.green('Ruta del archivo  que quiera revisar:'))
+process.stdout.write(colors.green('Ruta del archivo  que quiera revisar:\n'))
 // puedo escribir en consola la data y la funcion me regresa la data a consola
 process.stdin.on('data', function(data){
   //se almacena la data, y la convierto a string, con trim quito los caracteres de espacio y enter innecesarios
@@ -37,11 +37,14 @@ if(exist(route)){
 
 
 
+// if( links.readMd(resp) ){
+//   files= data.toString().trim();
+//  process.stdout.write(colors.rainbow(`Links ${files} \n`))
 
+// console.log('finalizo')
+//  // process.exit(); 
 
-
-
-
+// }
 
 
 

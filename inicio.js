@@ -1,30 +1,38 @@
 
 // importo los modulos de node.js
 const fs = require('fs');
-const path = require('path')
+const { existsSync } = require('fs')
+const {readFile} = require('fs/promises')
+const path = require('path');
+
 
 
 //verifico existencia de ruta
-const verifyExistence =(route)=> (fs.existsSync(route));
+const verifyExistence =(resp)=> existsSync(resp);
+//para verificar si la ruta es absoluta
+const pathAbsolute = (resp) => path.isAbsolute(resp);
+//se  transforma a absoluta
+const converToAbsolute = (resp) => path.resolve(resp);
+//leer el archivo             ruta y codificacion
+const fileRead = (resp) =>readFile(resp, 'utf8')
 //verificar la extension del archivo 
-const verifyExtension = (route) =>(path.extname(route)==='.md');
-// funcion para saber si es un archivo 
-// const file = (route) => fs.statSync(route);
+const verifyExtension = (resp) =>(path.extname(resp)==='.md');
 
-//exports.verifyExistence = verifyExistence;
-//exports.verifyExtension = verifyExtension;
+// funcion para saber si es un archivo que existe
+const fileExistence = (resp) => fs.statSync(resp).isFile();
+// funcion para saber si existe el directorio
+const directoryExistence = (resp) => fs.lstatSync(resp).isDirectory();
 
 
-module.exports = {
+    module.exports = {
+    pathAbsolute,
     verifyExistence,
-    verifyExtension
-}
-
-
-
-
-
-
+    verifyExtension, 
+    fileExistence,
+    converToAbsolute,
+    directoryExistence,
+    fileRead
+    }
 
 
 
@@ -35,4 +43,4 @@ module.exports = {
 //     } else {
 //       console.log(data);
 //     }
-//   });
+//   })

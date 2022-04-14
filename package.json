@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "file-system": "^2.2.2"
+    "file-system": "^2.2.2",
+    "marked": "^0.7.0"
   }
 }
