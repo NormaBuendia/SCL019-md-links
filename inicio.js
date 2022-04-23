@@ -4,43 +4,68 @@ const fs = require('fs');
 const { existsSync } = require('fs')
 const {readFile} = require('fs/promises')
 const path = require('path');
-
+const readline = require('readline');
 
 
 //verifico existencia de ruta
-const verifyExistence =(resp)=> existsSync(resp);
+const verifyExistence =(route)=> existsSync(route);
 //para verificar si la ruta es absoluta
-const pathAbsolute = (resp) => path.isAbsolute(resp);
+const pathAbsolute = (route) => path.isAbsolute(route);
 //se  transforma a absoluta
-const converToAbsolute = (resp) => path.resolve(resp);
-//leer el archivo             ruta y codificacion
-const fileRead = (resp) =>readFile(resp, 'utf8')
+const converToAbsolute = (route) => path.resolve(route);
+//leer el archivo             ruta y codificacion 
+const fileRead = (route) =>readFile(route, 'utf8')
 //verificar la extension del archivo 
-const verifyExtension = (resp) =>(path.extname(resp)==='.md');
+const verifyExtension = (route) =>(path.extname(route)==='.md');
 
 // funcion para saber si es un archivo que existe
-const fileExistence = (resp) => fs.statSync(resp).isFile();
+const fileExistence = (route) => fs.statSync(route).isFile();
 // funcion para saber si existe el directorio
-const directoryExistence = (resp) => fs.lstatSync(resp).isDirectory();
-
-
-    module.exports = {
-    pathAbsolute,
-    verifyExistence,
-    verifyExtension, 
-    fileExistence,
-    converToAbsolute,
-    directoryExistence,
-    fileRead
-    }
+const directoryExistence = (route) => fs.lstatSync(route).isDirectory();
 
 
 
+function readMd(route){
+    //file='README.md';
+    const promise = new Promise((resolve)=>{
+        const arrayLine=[];
+         const lector =readline.createInterface({
+             input:fs.createReadStream(route)
+         });
+         let regular = /(https?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/g;
+         //console.log('hola' + arrayline)
+         lector.on('line', linea =>{
+             if(regular.test(linea)){
+                 //console.log('holiss' + lector)
+                let arrayLink =linea.match(regular);
+                //console.log('chaito \n' + arrayLink)
+                arrayLine.push(arrayLink[0]);
+             }
+     }).on('close',() => {
+         resolve(arrayLine)
+     });
+ });
+ return promise
+ }
 
-// fs.readFile('texto.txt', 'utf-8', (err, data) => {
-//     if(err) {
-//       console.log('error: ', err);
-//     } else {
-//       console.log(data);
+
+ exports.pathAbsolute = pathAbsolute;
+ exports.verifyExistence= verifyExistence;
+ exports.verifyExtension= verifyExtension;
+ exports.fileExistence = fileExistence;
+ exports.converToAbsolute= converToAbsolute;
+ exports.directoryExistence = directoryExistence;
+ exports.fileRead= fileRead;
+ exports.readMd = readMd
+    
+//  module.exports = {
+//     pathAbsolute,
+//     verifyExistence,
+//     verifyExtension, 
+//     fileExistence,
+//     converToAbsolute,
+//     directoryExistence,
+//     fileRead,readMd
 //     }
-//   })
+
+
