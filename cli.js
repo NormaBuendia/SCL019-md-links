@@ -4,7 +4,6 @@
 
 
 const colors = require('colors/safe');
-//const { mdLinks} = require('./index.js')
 const {stats,validate, linksStatus} = require('./validate_stats')
 const {verifyExistence, pathAbsolute,verifyExtension,fileRead,readMd, converToAbsolute}= require('./inicio.js');
 
@@ -19,33 +18,27 @@ let route = process.argv[2];
 let firtsOption = process.argv[3];//opción de 'validate' o 'stats'
 let secondOption = process.argv[4];// opción de 'stats' o 'validate'
 
-let option = {};
+let opt = {};
 
 // si ingresa la opcion validate cambia a true
 if(firtsOption === '--validate' || secondOption === '--validate'){
-    option.validate = true
-    process.stdout.write(colors.rainbow('VALIDATE:\n'+ option.validate+'\n'))
-    //console.log('VALIDATE:', options.validate)
+    opt.validate = true
+    process.stdout.write(colors.rainbow('VALIDATE:\n'+ opt.validate+'\n'))
+    //console.log('VALIDATE:', opt.validate)
 }
 // si ingresa la opcion stats cambia a true
 if(firtsOption === '--stats' || secondOption === '--stats'){
-    option.stats = true
-    process.stdout.write(colors.rainbow('STATS:\n'+ option.stats +'\n'))
-    //console.log('STATS:',options.stats)
+    opt.stats = true
+    process.stdout.write(colors.rainbow('STATS:\n'+ opt.stats +'\n'))
+    //console.log('STATS:',opt.stats)
 }
 //sino ingresa ninguna ruta le pide que ingrese una existente
 if(route === false  || route === undefined){
     process.stdout.write(colors.red('Ingresa una ruta existente'))
     //console.log('Ingresa una ruta existente')
 }
- 
 
-
-
-
-
-
-readMdlinks(route,option).then(() =>{
+readMdlinks(route,opt).then(() =>{
      
 //process.stdout.write(colors.blue(result))    
 console.log('HOLA')
@@ -55,8 +48,11 @@ console.log('HOLA')
  });
 
 
-//  mdLinks(route, {'stats':true,'validate':true,}).then(result =>{
+//  readMdlinks(route, {'stats':true,'validate':true,}).then(result =>{
 //    // process.stdout.write(colors.blue(result))    
 //     console.table('HOLA',result)
 //      })
- 
+//      .catch((error)=>{
+//         console.log(error) 
+//      });
+    

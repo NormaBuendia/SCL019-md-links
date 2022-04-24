@@ -28,6 +28,7 @@ const linksStatus = (link) => {
         //Cuando la ejecucion termina que pase esto que viene
         const newData ={
         nameLink:link,
+        href:link,
         Code: response.statusCode,
         status:`ok ${response.statusCode}`
         };
@@ -35,9 +36,6 @@ const linksStatus = (link) => {
       //console.log('primer req');
        //console.log('statusCode: ${res.statusCode}');
 
-    //    res.on('data', function(d) {
-    //     process.stdout.write(colors.red(d));
-    //   });
     //resuelve la promesa, se refiere al valor al cual resuelve
     resolve(newData);
     
@@ -61,13 +59,18 @@ const linksStatus = (link) => {
     
     } 
     
-    
 
     function stats (arrayLinks,opt) {
+     
       let validateLinks = 0; // se tiene que colocar let, porque no es constante
       let invalidateLinks = 0; // se tiene que colocar let, porque no es constante
+     
+      let unique= new Set(arrayLinks.map(link =>link.href == link.nameLink));
+      //console.log(unique)
+     
+    
       //recorro todo el objeto arrayLinks
-   //if(opt.validate && opt.stats){
+   
       arrayLinks.forEach(element => {
 
           if (element.status){
@@ -75,13 +78,14 @@ const linksStatus = (link) => {
           }else{
               invalidateLinks += 1;
           }
+          
       });
-    
-      process.stdout.write(colors.rainbow('TOTAL :' + arrayLinks.length +'\n'))
-      process.stdout.write(colors.blue('VALIDOS:' + validateLinks +'\n' ))
-      process.stdout.write(colors.rainbow('BROKEN:' + invalidateLinks +'\n' ))  
+      process.stdout.write(colors.rainbow('TOTAL :' +  arrayLinks.length +'\n'))
+      process.stdout.write(colors.red('UNIQUE :' ,unique,'\n'))
+      process.stdout.write(colors.blue('VALIDOS:' , validateLinks ,'\n' ))
+      process.stdout.write(colors.rainbow('BROKEN:' +  invalidateLinks +'\n' ))  
           }
-        //} 
+        
       
       
     function validate (arrayLinks) {
@@ -90,21 +94,15 @@ const linksStatus = (link) => {
         arrayLinks.forEach(element => {
             if (element.status ){
                 process.stdout.write(colors.green(`Link: ${element.nameLink} Status: ${element.status}  \n`))
+
             }else{
                process.stdout.write(colors.red(`Link: ${element.nameLink} Status: ${element.status} \n`)) 
             }
         });
     } 
     
+    
 
 exports.linksStatus = linksStatus;
 exports.stats =stats;
 exports.validate = validate
-//exports.options = options
-
-// module.exports = {
-//         linksStatus,
-//         stats,
-//         validate,
-//   //  options
-// }

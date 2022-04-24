@@ -52,7 +52,7 @@ const readMdlinks =(route,opt) =>{
     const data ={
     href: ref,
     file: route,
-    text: ref[4],
+    
     }
    // console.log('olaaaa' + data)
     //los coloco en el array que declare vacio

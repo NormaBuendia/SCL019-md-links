@@ -29,18 +29,23 @@ function readMd(route){
     //file='README.md';
     const promise = new Promise((resolve)=>{
         const arrayLine=[];
+        // lee el archivo md, y crea una interface
          const lector =readline.createInterface({
              input:fs.createReadStream(route)
          });
+         // expresiones regulares
          let regular = /(https?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/g;
-         //console.log('hola' + arrayline)
+         
          lector.on('line', linea =>{
              if(regular.test(linea)){
                  //console.log('holiss' + lector)
                 let arrayLink =linea.match(regular);
                 //console.log('chaito \n' + arrayLink)
-                arrayLine.push(arrayLink[0]);
+                //lo coloca el nuevo array al principio
+                arrayLine.unshift(arrayLink[0])
+               //arrayLine.push(arrayLink[0]);
              }
+           //resuelve al final  
      }).on('close',() => {
          resolve(arrayLine)
      });
