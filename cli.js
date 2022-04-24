@@ -32,6 +32,7 @@ if(firtsOption === '--stats' || secondOption === '--stats'){
     process.stdout.write(colors.rainbow('STATS:\n'+ opt.stats +'\n'))
     //console.log('STATS:',opt.stats)
 }
+
 //sino ingresa ninguna ruta le pide que ingrese una existente
 if(route === false  || route === undefined){
     process.stdout.write(colors.red('Ingresa una ruta existente'))

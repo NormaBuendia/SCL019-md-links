@@ -66,8 +66,7 @@ const linksStatus = (link) => {
       let invalidateLinks = 0; // se tiene que colocar let, porque no es constante
      
       let unique= new Set(arrayLinks.map(link =>link.href == link.nameLink));
-      //console.log(unique)
-     
+      //console.log(unique.size)
     
       //recorro todo el objeto arrayLinks
    
@@ -81,7 +80,7 @@ const linksStatus = (link) => {
           
       });
       process.stdout.write(colors.rainbow('TOTAL :' +  arrayLinks.length +'\n'))
-      process.stdout.write(colors.red('UNIQUE :' ,unique,'\n'))
+      process.stdout.write(colors.red('UNIQUE :' + (unique.size)+ '\n'))
       process.stdout.write(colors.blue('VALIDOS:' , validateLinks ,'\n' ))
       process.stdout.write(colors.rainbow('BROKEN:' +  invalidateLinks +'\n' ))  
           }
