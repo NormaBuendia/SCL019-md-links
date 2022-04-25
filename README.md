@@ -34,6 +34,7 @@ Coloque el siguiente comando en la terminal
 ### npm i md-links-norma
 
 
+
 Después de instalada la librería, en la terminal escribes lo siguiente:
 
 ![Getting Started](img/Como_empezar.png)
@@ -42,6 +43,12 @@ Después de instalada la librería, en la terminal escribes lo siguiente:
 ***
 
 ## 4. MODO DE USO
+
+Opcion Error
+
+Ingresar un archivo .md
+
+![Getting Started](img/Error_archivo.png)
 
 Opcion --validate
 
