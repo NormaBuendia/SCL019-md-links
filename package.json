@@ -1,7 +1,8 @@
 {
-  "name": "md-links",
+  "name": "md-links-norma",
   "version": "0.1.0",
-
+  "description": "Módulo para encontrar archivos .md",
+   "main":"./links.js",
   "bin": {
    "md-links" : "./cli.js"
   },
@@ -11,6 +12,20 @@
   "devDependencies": {
     "jest": "^27.5.1"
   },
+  "author": {
+    "name": "Norma Buendia",
+    "email": "normabdv@gmail.com"
+  },
+  "keywords": [
+    "md-Links",
+    "Markdown",
+    "links"
+  ],
+  "repository": {
+    "url": "https://github.com/NormaBuendia/SCL019-md-links"
+  },
+
+
   "scripts": {
     "test": "jest --coverage --verbose"
   },

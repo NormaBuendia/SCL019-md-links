@@ -11,7 +11,7 @@ const { readMdlinks } = require('./links');
 
 
 process.stdout.write(colors.rainbow('=======================BIENVENIDOS ===========================\n'))
-
+process.stdout.write(colors.green('Ingresa un archivo .md      coloca --stats  o   --validate\n'))
 
 
 let route = process.argv[2];
@@ -30,19 +30,19 @@ if(firtsOption === '--validate' || secondOption === '--validate'){
 if(firtsOption === '--stats' || secondOption === '--stats'){
     opt.stats = true
     process.stdout.write(colors.rainbow('STATS:\n'+ opt.stats +'\n'))
-    //console.log('STATS:',opt.stats)
+   //console.log('STATS:',opt.stats)
 }
 
 //sino ingresa ninguna ruta le pide que ingrese una existente
 if(route === false  || route === undefined){
     process.stdout.write(colors.red('Ingresa una ruta existente'))
-    //console.log('Ingresa una ruta existente')
+    //console.table('Ingresa una ruta existente')
 }
 
 readMdlinks(route,opt).then(() =>{
      
 //process.stdout.write(colors.blue(result))    
-console.log('HOLA')
+console.log()
  })
  .catch((error)=>{
     console.log(error) 

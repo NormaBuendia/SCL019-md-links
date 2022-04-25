@@ -30,10 +30,10 @@ const readMdlinks =(route,opt) =>{
         let newArray =[];
 //si la ruta existe
     if (inicio.verifyExistence(route)&& inicio.verifyExtension(route)) {
-        process.stdout.write(colors.blue('Tu ruta Existe! \n'));
+        //process.stdout.write(colors.blue('Tu ruta Existe! \n'));
         //si la ruta absoluta no es absoluta, la transformas a absoluta,
-        inicio.pathAbsolute(route) === false ? route = path.resolve(route) : route;
-        process.stdout.write(colors.magenta('Tu ruta absoluta es: \n'+ route + '\n'));
+        //inicio.pathAbsolute(route) === false ? route = path.resolve(route) : route;
+        //process.stdout.write(colors.magenta('Tu ruta absoluta es: \n'+ route + '\n'));
     // si es un archivo
      }
     else if(!inicio.verifyExtension(route) ){
@@ -80,7 +80,7 @@ return newArray
    }else{
      if(opt.validate) {
        validate(result);  
-       console.log(route)
+       //console.log(route)
     }
       if(opt.stats) {
        stats(result);

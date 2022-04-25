@@ -29,7 +29,9 @@ const linksStatus = (link) => {
         const newData ={
         nameLink:link,
         href:link,
+        //responde codigo de estado
         Code: response.statusCode,
+      //estado ok 
         status:`ok ${response.statusCode}`
         };
     //console.log('primer req', newData);
