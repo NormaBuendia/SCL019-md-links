@@ -6,7 +6,7 @@
 const colors = require('colors/safe');
 
 
-const { readMdlinks } = require('./links');
+const { readMdlinks } = require('./index');
 
 
 process.stdout.write(colors.rainbow('=======================BIENVENIDOS ===========================\n'))
