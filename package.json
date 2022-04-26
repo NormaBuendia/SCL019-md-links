@@ -1,6 +1,6 @@
 {
   "name": "md-links-norma",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Módulo para encontrar archivos .md",
    "main":"./links.js",
   "bin": {

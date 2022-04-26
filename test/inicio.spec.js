@@ -1,5 +1,5 @@
 
-const {verifyExistence,verifyExtension,fileExistence,converToAbsolute,readMd  }= require('../inicio.js');
+const {verifyExistence,verifyExtension,fileExistence,readMd  }= require('../inicio.js');
 const {linksStatus,stats, validate } =require('../validate_stats.js');
 const ruta = 'C :/Norma/Laboratoria/Laboratoria 19/SCL019-md-links/README.md'
 const file ='./README.md'
@@ -16,7 +16,7 @@ describe('La funcion verifica la existencia', () => {
    expect(verifyExistence(file)).toBe(true)
   });
   it('Si el archivo no existe y devuelve false' , () => {
-   //const file ='.\README.md'
+ 
         expect(verifyExistence(file1)).toBe(false)
     });
 });
@@ -76,5 +76,3 @@ describe('La función verifyExtension', () => {
       console.log('it is a function');
     });
   })
-
-

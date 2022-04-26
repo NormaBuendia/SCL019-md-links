@@ -4,6 +4,7 @@ const fs = require('fs');
 const { existsSync } = require('fs')
 const {readFile} = require('fs/promises')
 const path = require('path');
+
 const readline = require('readline');
 
 
@@ -20,33 +21,35 @@ const verifyExtension = (route) =>(path.extname(route)==='.md');
 
 // funcion para saber si es un archivo que existe
 const fileExistence = (route) => fs.statSync(route).isFile();
-// funcion para saber si existe el directorio
-const directoryExistence = (route) => fs.lstatSync(route).isDirectory();
+
 
 
 
 function readMd(route){
-    //file='README.md';
+    //nueva promesa
     const promise = new Promise((resolve)=>{
         const arrayLine=[];
-        // lee el archivo md, y crea una interface
+        // lee el archivo md, y crea una interface de readline
          const lector =readline.createInterface({
+             //para leer en el file
              input:fs.createReadStream(route)
          });
-         // expresiones regulares
-         let regular = /(https?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/g;
-         
+         // expresiones regulares, le agregamos el flat g, me trae todas las coincidencias del patron dado
+         let regular = /(https?:\/\/)(www\.)?[-a-z-0-9@:%._\+~#=]{1,256}\.[a-z-0-9()]{1,6}\b([-a-z-0-9()!@:%_\+.~#?&\/\/=]*)/gi;
+         //cada vez que se encuentre una linea se llama al evento line que es un callback
          lector.on('line', linea =>{
+             // se prueba con test si regular existe dentro de linea, devuelve un boleano
              if(regular.test(linea)){
-                 //console.log('holiss' + lector)
+                 
+                 // hacer el match y se guarda en arrayLink
                 let arrayLink =linea.match(regular);
-                //console.log('chaito \n' + arrayLink)
-                //lo coloca el nuevo array al principio
+               
+                //se agrega en el array vacio,
                 arrayLine.unshift(arrayLink[0])
-               //arrayLine.push(arrayLink[0]);
-             }
-           //resuelve al final  
+                }
+           //evento se cierra 
      }).on('close',() => {
+         //resuelve 
          resolve(arrayLine)
      });
  });
@@ -57,20 +60,7 @@ function readMd(route){
  exports.pathAbsolute = pathAbsolute;
  exports.verifyExistence= verifyExistence;
  exports.verifyExtension= verifyExtension;
- exports.fileExistence = fileExistence;
  exports.converToAbsolute= converToAbsolute;
- exports.directoryExistence = directoryExistence;
+ exports.fileExistence = fileExistence
  exports.fileRead= fileRead;
  exports.readMd = readMd
-    
-//  module.exports = {
-//     pathAbsolute,
-//     verifyExistence,
-//     verifyExtension, 
-//     fileExistence,
-//     converToAbsolute,
-//     directoryExistence,
-//     fileRead,readMd
-//     }
-
-
