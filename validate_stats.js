@@ -53,10 +53,7 @@ const linksStatus = (link) => {
         });
     // una vez que lance la solicitud quiero que la cierre
     req.end()
-    //retorne la 
-    //console.log('olaaa'+ linksStatus)
-    //return link.linksStatus
-    //return linksStatus                      
+                         
     });
     
     } 
