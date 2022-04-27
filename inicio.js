@@ -38,7 +38,7 @@ function readMd(route){
          let regular = /(https?:\/\/)(www\.)?[-a-z-0-9@:%._\+~#=]{1,256}\.[a-z-0-9()]{1,6}\b([-a-z-0-9()!@:%_\+.~#?&\/\/=]*)/gi;
          //cada vez que se encuentre una linea se llama al evento line que es un callback
          lector.on('line', linea =>{
-             // se prueba con test si regular existe dentro de linea, devuelve un boleano
+             // se prueba con test si existen links dentro de linea, devuelve un boleano
              if(regular.test(linea)){
                  
                  // hacer el match y se guarda en arrayLink

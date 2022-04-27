@@ -1,10 +1,10 @@
 {
   "name": "md-links-norma",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Módulo para encontrar archivos .md",
    "main":"./links.js",
   "bin": {
-   "md-links" : "./index.js"
+   "md-links" : "./cli.js"
   },
   "engines": {
     "node": ">=14.x"

@@ -30,9 +30,11 @@ const readMdlinks =(route,opt) =>{
       
    arrayLink.forEach((ref) =>{
     //creo un nuevo objeto  le doy las propiedades
+    // para ver el href y el file donde estan
     const data ={
     href: ref,
     file: route,
+   // line:i+1
     
     }
  
